@@ -5,12 +5,15 @@ def sumofnumber(ar):
 def averageofnumber(ar):
     return (sum(ar)/len(ar))
 if __name__ == "__main__":
-    with open("sample.json","r") as read_it:
-        data=json.load(read_it)
+    request= requests.get("http://---")
+    request_txt=request.text
+    data=json.loads(request_txt)
     ar=data["numbers"]
     perform=data["perform"]
     if perform=="sum":
-        print(sumofnumber(ar))
-    if perform=="average":
-        print(averageofnumber(ar))
+       result=sumofnumber(ar)
+    else:
+       result=averageofnumber(ar)
+    data_serialized=json.dump(result,open("result.json", "w"))
+    
     
